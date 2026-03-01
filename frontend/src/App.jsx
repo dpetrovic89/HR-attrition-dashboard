@@ -8,7 +8,9 @@ import {
 } from 'recharts';
 import { Database, TrendingDown, Users, DollarSign, Clock, Code2, ChevronDown } from 'lucide-react';
 
-const API = 'http://localhost:8000/api/attrition';
+const API = import.meta.env.DEV
+  ? 'http://localhost:8000/api/attrition'
+  : '/api/attrition';
 const COLORS = ['#38bdf8', '#818cf8', '#a78bfa', '#fb7185', '#fbbf24', '#34d399', '#f97316', '#e879f9'];
 
 const CustomTooltip = ({ active, payload, label }) => {
