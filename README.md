@@ -20,6 +20,12 @@ A premium, interactive HR Analytics Dashboard designed to visualize employee tur
 
 ---
 
+## 🏛️ [Architecture Overview](architecture.md)
+
+Detailed breakdown of the system components and data flow.
+
+---
+
 ## ✨ Key Features
 
 *   🔍 **SQL Explorer**: Interactive mode to inspect the exact SQL queries driving each visualization.
