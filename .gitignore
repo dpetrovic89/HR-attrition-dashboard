@@ -14,7 +14,8 @@ dist/
 *.tsbuildinfo
 
 # Data (auto-generated at runtime – not tracked in git)
-data/hr_attrition.csv
+data/*
+!data/.gitkeep
 data/*.db
 
 # OS
