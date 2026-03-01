@@ -10,6 +10,8 @@ app_port: 7860
 
 # HR Attrition Dashboard — SQL Showcase
 
+## Website: https://huggingface.co/spaces/executor1389/HR-attrition-dashboard
+
 A modern, interactive HR Analytics Dashboard built to showcase **advanced SQL techniques** (CTEs and Window Functions) using **DuckDB**, **FastAPI**, and **React**.
 
 > 🎓 Built as a **resume/CV portfolio project** — highlighting both data engineering and full-stack skills.
