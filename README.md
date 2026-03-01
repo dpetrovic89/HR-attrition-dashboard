@@ -1,5 +1,5 @@
 ---
-title: HR Attrition SQL Showcase
+title: HR Attrition Dashboard — SQL Showcase
 emoji: 📊
 colorFrom: blue
 colorTo: purple
@@ -8,30 +8,35 @@ pinned: false
 app_port: 7860
 ---
 
-# HR Attrition Dashboard — SQL Showcase
+# 📊 HR Attrition Analytics Dashboard
 
-## Website: https://huggingface.co/spaces/executor1389/HR-attrition-dashboard
+[![Sync to Hugging Face Spaces](https://github.com/dpetrovic89/HR-attrition-dashboard/actions/workflows/sync_to_hf.yml/badge.svg)](https://github.com/dpetrovic89/HR-attrition-dashboard/actions/workflows/sync_to_hf.yml)
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/executor1389/HR-attrition-dashboard)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A modern, interactive HR Analytics Dashboard built to showcase **advanced SQL techniques** (CTEs and Window Functions) using **DuckDB**, **FastAPI**, and **React**.
+### **[Live Demo: huggingface.co/spaces/executor1389/HR-attrition-dashboard](https://huggingface.co/spaces/executor1389/HR-attrition-dashboard)**
 
-> 🎓 Built as a **resume/CV portfolio project** — highlighting both data engineering and full-stack skills.
+A premium, interactive HR Analytics Dashboard designed to visualize employee turnover insights using **Advanced SQL** (CTEs & Window Functions). Powered by **DuckDB** for lightning-fast in-browser queries and **FastAPI** + **React**.
 
-## 🚀 Deployment Status
-![Sync to Hugging Face Spaces](https://github.com/dpetrovic89/HR-attrition-dashboard/actions/workflows/sync_to_hf.yml/badge.svg)
+---
 
-## 🚀 Features
+## ✨ Key Features
 
-| Feature | Details |
-|---|---|
-| 🧠 **SQL Explorer** | Click any chart to reveal the CTE or Window Function that drives it |
-| ⚡ **DuckDB Engine** | High-performance in-process SQL directly on CSV data |
-| 📊 **8 Interactive Charts** | Bars, area charts, pie/donut, line, horizontal bars |
-| 🎨 **Premium UI** | Glassmorphism dark-mode, Recharts, animated spinner |
-| 🐳 **Docker ready** | Ships with a multi-stage Dockerfile for Hugging Face Spaces |
+*   🔍 **SQL Explorer**: Interactive mode to inspect the exact SQL queries driving each visualization.
+*   ⚡ **DuckDB Powered**: High-performance analytical SQL execution directly on CSV data.
+*   📊 **8+ Dynamic Charts**: Comprehensive metrics including Department Attrition, Salary Distribution, and Promotion Risk.
+*   🎨 **Glassmorphism UI**: Modern dark-mode interface with smooth animations and responsive design.
+*   🐳 **Containerized**: Fully Dockerized for seamless deployment to Hugging Face Spaces.
 
-## 📖 SQL Highlights
+---
 
-### CTE — Department Attrition vs. Company Average
+## � Advanced SQL Showcase
+
+This project explicitly demonstrates mastery of intermediate-to-advanced SQL patterns:
+
+<details>
+<summary><b>1. CTEs: Department Attrition vs. Global Average</b></summary>
+
 ```sql
 WITH DeptStats AS (
     SELECT Department,
@@ -48,16 +53,22 @@ SELECT d.Department,
        ROUND(c.AvgRate * 100, 2) AS CompanyAvgRate
 FROM DeptStats d, CompanyAvg c;
 ```
+</details>
 
-### Window Function — Salary Percentile Benchmarking
+<details>
+<summary><b>2. Window Functions: Salary Percentile Benchmarking</b></summary>
+
 ```sql
 SELECT EmployeeID, Department, MonthlyIncome,
        AVG(MonthlyIncome) OVER(PARTITION BY Department) AS DeptAvgSalary,
        PERCENT_RANK() OVER(PARTITION BY Department ORDER BY MonthlyIncome) AS SalaryPercentile
 FROM hr_data;
 ```
+</details>
 
-### Window Function — Promotion Risk Scoring
+<details>
+<summary><b>3. Logic: Promotion Risk Scoring</b></summary>
+
 ```sql
 SELECT EmployeeID, JobRole, YearsSinceLastPromotion,
        CASE
@@ -69,60 +80,60 @@ SELECT EmployeeID, JobRole, YearsSinceLastPromotion,
        END AS PromotionRisk
 FROM hr_data;
 ```
+</details>
 
-## 🛠️ Tech Stack
+---
 
-**Backend** · FastAPI · DuckDB · Pandas · Python 3.11  
-**Frontend** · React + Vite · Recharts · Lucide-React · Vanilla CSS  
-**Deployment** · Docker · Hugging Face Spaces  
+## 🛠️ Technology Stack
 
-## 🏃 Local Setup
+| Layer | Technologies |
+|---|---|
+| **Backend** | ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi) ![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=flat&logo=duckdb&logoColor=black) ![Pandas](https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas) |
+| **Frontend** | ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite) ![Recharts](https://img.shields.io/badge/Recharts-222222?style=flat) |
+| **DevOps** | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker) ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions) |
 
-```bash
-# 1. Backend
-cd backend
-python -m venv venv
-# Windows:
-.\venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
+---
 
-pip install -r requirements.txt
-python setup_data.py        # generates data/hr_attrition.csv
-uvicorn main:app --reload   # → http://localhost:8000
+## 🚀 Quick Start
 
-# 2. Frontend (new terminal)
-cd frontend
-npm install
-npm run dev                 # → http://localhost:5173
-```
+### Local Development
 
-## 🐳 Docker
+1. **Backend Setup**
+   ```bash
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # Windows: .\venv\Scripts\activate
+   pip install -r requirements.txt
+   uvicorn main:app --reload
+   ```
 
+2. **Frontend Setup**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+### Using Docker
 ```bash
 docker build -t hr-dashboard .
 docker run -p 7860:7860 hr-dashboard
-# Open http://localhost:7860
 ```
+
+---
 
 ## 📂 Project Structure
 
+```bash
+.
+├── backend/            # FastAPI API & DuckDB Logic
+├── frontend/           # Vite + React Dashboard
+├── data/               # HR Dataset (Auto-generated)
+├── .github/workflows/  # CI/CD (Auto-sync to HF)
+└── Dockerfile          # Multi-stage production build
 ```
-HR-attrition_dashboard/
-├── backend/
-│   ├── main.py           # FastAPI + DuckDB
-│   ├── sql_queries.py    # 8 CTE & Window Function queries
-│   ├── setup_data.py     # Generates dataset
-│   └── requirements.txt
-├── frontend/
-│   └── src/
-│       ├── App.jsx       # Dashboard (8 charts + SQL Explorer)
-│       └── index.css     # Glassmorphism dark theme
-├── data/                 # Auto-generated – not in git
-├── Dockerfile
-└── README.md
-```
+
+---
 
 ## 📜 License
-
-MIT — free to use, fork, and adapt for your own portfolio.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
