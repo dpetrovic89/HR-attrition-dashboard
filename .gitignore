@@ -1,0 +1,28 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+*.egg-info/
+.Python
+
+# Node
+node_modules/
+dist/
+.eslintcache
+*.tsbuildinfo
+
+# Data (auto-generated at runtime – not tracked in git)
+data/hr_attrition.csv
+data/*.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
