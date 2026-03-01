@@ -13,8 +13,19 @@ from sql_queries import (
     QUERY_SATISFACTION_ATTRITION,
     QUERY_JOBROLE_ATTRITION,
 )
+from setup_data import generate_data
 
 app = FastAPI(title="HR Attrition API")
+
+@app.on_event("startup")
+async def startup_event():
+    if not os.path.exists(DB_PATH):
+        print(f"Data file not found at {DB_PATH}. Generating dummy data...")
+        # setup_data.py expects to be run from backend/ or root usually
+        # but the function itself handles the directory creation.
+        # However, setup_data.py uses "../data" relative to itself.
+        # Let's just call the generation logic here to be safe.
+        generate_data()
 
 app.add_middleware(
     CORSMiddleware,
