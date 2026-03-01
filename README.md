@@ -14,6 +14,9 @@ A modern, interactive HR Analytics Dashboard built to showcase **advanced SQL te
 
 > 🎓 Built as a **resume/CV portfolio project** — highlighting both data engineering and full-stack skills.
 
+## 🚀 Deployment Status
+![Sync to Hugging Face Spaces](https://github.com/dpetrovic89/HR-attrition-dashboard/actions/workflows/sync_to_hf.yml/badge.svg)
+
 ## 🚀 Features
 
 | Feature | Details |
